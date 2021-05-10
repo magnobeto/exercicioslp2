@@ -1,4 +1,5 @@
 
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -38,33 +39,50 @@ public class P6nX {
         lista.add(pessoa9);
         lista.add(pessoa10);
 
-        while (decisao == 1) {
-            System.out.println("1. Imprimir Lista");
-            System.out.println("2. Sair");
-            System.out.print("Digite sua opcao: ");
-            decisao = sc.nextInt();
-            if (decisao == 1) {
-                System.out.println("Escolha seu modo de ordenacao: ");
-                System.out.println("1. Alfabetica (A-Z)");
-                System.out.println("2. Alfabetica (Z-A)");
-                System.out.println("3. Menor Peso");
-                System.out.println("4. Maior Peso");
-                System.out.println("5. Menor Altura");
-                System.out.println("6. Maior Altura");
-                System.out.println("7. Menor IMC");
-                System.out.println("8. Maior IMC");
+        System.out.println("========== Lista original ================");
+        for (PessoaIMC pessoa : lista.getLista()) {
+            System.out.println("\n" + pessoa);
+        }
+        System.out.println("==========================================\n");
+
+        try {
+            while (decisao == 1) {
+                System.out.println("1. Imprimir Lista");
+                System.out.println("2. Sair");
                 System.out.print("Digite sua opcao: ");
-                escolha = sc.nextInt();
-                lista.ordena(escolha);
-                for (PessoaIMC pessoa : lista.getLista()){
-                    System.out.println("\n" + pessoa.getAltura());
+                decisao = sc.nextInt();
+                if (decisao == 1) {
+                    System.out.println("Escolha seu modo de ordenacao: ");
+                    System.out.println("1. Alfabetica (A-Z)");
+                    System.out.println("2. Alfabetica (Z-A)");
+                    System.out.println("3. Menor Peso");
+                    System.out.println("4. Maior Peso");
+                    System.out.println("5. Menor Altura");
+                    System.out.println("6. Maior Altura");
+                    System.out.println("7. Menor IMC");
+                    System.out.println("8. Maior IMC");
+                    System.out.println("9. Homem - Mulher");
+                    System.out.println("10. Mulher - Homem");
+                    System.out.print("Digite sua opcao: ");
+                    escolha = sc.nextInt();
+                    lista.ordena(escolha);
+                    if (escolha <= 10 && escolha >= 1) {
+                        for (PessoaIMC pessoa : lista.getLista()) {
+                            System.out.println("\n" + pessoa);
+                        }
+                    } else {
+                        System.out.println("Escolha um item valido!");
+                    }
+
+                    System.out.println();
+
+                } else if (decisao == 2) {
+                    break;
                 }
-                System.out.println();
 
-            } else if (decisao == 2) {
-                break;
             }
-
+        } catch (InputMismatchException error) {
+            System.out.println("Entrada invalida!");
         }
         sc.close();
     }

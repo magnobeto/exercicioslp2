@@ -13,7 +13,7 @@ public class Homem extends PessoaIMC {
     ) {
         super(nome, dataNascimento, peso, altura);
     }
-
+    
     @Override
     public String resultIMC() {
         String resultado;

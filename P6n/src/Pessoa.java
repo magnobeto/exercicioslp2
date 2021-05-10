@@ -12,6 +12,10 @@ public class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
+    public String getNome() {
+        return nome;
+    }
+    
     @Override
     public String toString() {
         return "Nome: " + nome + 
