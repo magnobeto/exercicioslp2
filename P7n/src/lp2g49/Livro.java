@@ -35,6 +35,10 @@ public class Livro {
         this.titulo = titulo;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
     public void empresta() throws CopiaNaoDisponivelEx {
         if (emprestados == quantidade) {
             throw new CopiaNaoDisponivelEx(

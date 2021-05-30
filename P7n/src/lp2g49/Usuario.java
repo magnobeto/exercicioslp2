@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
 public class Usuario extends Pessoa {
 
     private String endereco;
-    private int codigoUsuario;
+    private String codigoUsuario;
     private ArrayList historico = new ArrayList<Emprestimo>();
 
     public Usuario(
@@ -19,11 +19,15 @@ public class Usuario extends Pessoa {
             int month,
             int dayOfMonth,
             String endereco,
-            int codigoUsuario
+            String codigoUsuario
     ) {
         super(nome, year, month, dayOfMonth);
         this.endereco = endereco;
         this.codigoUsuario = codigoUsuario;
+    }
+
+    public String getCodigoUsuario() {
+        return codigoUsuario;
     }
 
     public void addLivroHist(
