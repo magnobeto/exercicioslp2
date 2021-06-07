@@ -1,15 +1,19 @@
 package lp2g49;
 
-import exceptions.CopiaNaoDisponivelEx;
-import exceptions.NenhumaCopiaEmprestadaEx;
+import exception.CopiaNaoDisponivelEx;
+import exception.LivroNaoCadastradoEx;
+import exception.NenhumaCopiaEmprestadaEx;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
+import java.util.List;
 
 /**
  *
@@ -149,7 +153,7 @@ public class Biblioteca {
         int yearEmp = calendar.get(Calendar.YEAR);
         int monthEmp = calendar.get(Calendar.MONTH);
         int dayOfMonthEmp = calendar.get(Calendar.DAY_OF_MONTH);
-        int dayOfMonthDev = yearEmp + 3;
+        int dayOfMonthDev = dayOfMonthEmp + 3;
 
         usuario.addLivroHist(
                 yearEmp,
@@ -174,5 +178,43 @@ public class Biblioteca {
         int monthEmp = calendar.get(Calendar.MONTH);
         int dayOfMonthEmp = calendar.get(Calendar.DAY_OF_MONTH);
 
+        List<Emprestimo> lista = usuario.getHistorico();
+        Emprestimo emprestimo = lista
+                .stream()
+                .findFirst()
+                .filter(x -> x.getCodigoDoLivro().equals(livro.getCodigo()))
+                .get();
+
+        if (dayOfMonthEmp - emprestimo.getDataDevolucao().get(Calendar.DAY_OF_MONTH) > 3) {
+            System.out.println("Você será multado por ter excedido a quantidade de dias em empréstimo");
+        }
+    }
+
+    public String imprimeLivros() {
+        String lista = this.cadastroDeLivro
+                .entrySet()
+                .stream()
+                .sorted()
+                .toString();
+        return lista;
+    }
+
+    public String imprimeUsuarios() {
+        String lista = this.cadastroDeUsuario
+                .entrySet()
+                .stream()
+                .sorted()
+                .toString();
+        return lista;
+    }
+
+    public Livro getLivro(String codigo) {
+        return this.cadastroDeLivro.get(codigo);
+        //add try LivroNaoCadastradoEx
+    }
+    
+    public Usuario getUsuario(String codigo) {
+        return this.cadastroDeUsuario.get(codigo);
+        //add try LivroNaoCadastradoEx
     }
 }

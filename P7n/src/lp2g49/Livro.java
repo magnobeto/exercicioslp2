@@ -1,7 +1,7 @@
 package lp2g49;
 
-import exceptions.CopiaNaoDisponivelEx;
-import exceptions.NenhumaCopiaEmprestadaEx;
+import exception.CopiaNaoDisponivelEx;
+import exception.NenhumaCopiaEmprestadaEx;
 import java.util.ArrayList;
 
 /**
@@ -35,6 +35,10 @@ public class Livro {
         this.titulo = titulo;
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
+  
     public String getCodigo() {
         return codigo;
     }
@@ -44,6 +48,9 @@ public class Livro {
             throw new CopiaNaoDisponivelEx(
                     "Nao tem copia disponivel para emprestimo."
             );
+        } else {
+            this.quantidade -= 1;
+            this.emprestados += 1;
         }
     }
 
@@ -52,6 +59,9 @@ public class Livro {
             throw new NenhumaCopiaEmprestadaEx(
                     "Nenhuma copia emprestada."
             );
+        } else {
+            this.emprestados -= 1;
+            this.quantidade += 1;
         }
     }
 

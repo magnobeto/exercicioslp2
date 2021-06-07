@@ -27,4 +27,16 @@ class Emprestimo {
                 = new GregorianCalendar(yearDev, monthDev, dayOfMonthDev);
         this.codigoDoLivro = codigoDoLivro;
     }
+
+    public GregorianCalendar getDataEmprestimo() {
+        return dataEmprestimo;
+    }
+
+    public GregorianCalendar getDataDevolucao() {
+        return dataDevolucao;
+    }
+
+    public String getCodigoDoLivro() {
+        return codigoDoLivro;
+    }
 }

@@ -1,8 +1,6 @@
 package lp2g49;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
  *
@@ -12,7 +10,7 @@ public class Usuario extends Pessoa {
 
     private String endereco;
     private String codigoUsuario;
-    private ArrayList historico = new ArrayList<Emprestimo>();
+    private ArrayList<Emprestimo> historico = new ArrayList();
 
     public Usuario(
             String nome,
@@ -31,6 +29,14 @@ public class Usuario extends Pessoa {
         return codigoUsuario;
     }
 
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public ArrayList getHistorico() {
+        return historico;
+    }
+    
     public void addLivroHist(
             int yearEmp,
             int monthEmp,
